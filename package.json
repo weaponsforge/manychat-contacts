@@ -21,12 +21,17 @@
     "node": ">=24"
   },
   "scripts": {
-    "dev": "node src/main.ts"
+    "dev": "node src/main.ts",
+    "lint": "eslint \"src/**/*.ts\" *.mjs",
+    "lint:fix": "eslint \"src/**/*.ts\" *.mjs --fix"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@types/node": "^25.0.6",
+    "eslint": "^9.39.2",
     "tsc-alias": "^1.8.16",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.52.0"
   }
 }
