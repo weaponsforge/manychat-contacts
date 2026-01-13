@@ -1,0 +1,17 @@
+node_modules/
+dist/
+output/
+.vscode
+.dockerignore
+Dockerfile
+*.zip
+*.rar
+*.tgz
+*.txt
+*.json
+*.csv
+*.xlsx
+
+!package.json
+!package-lock.json
+!tsconfig.json

@@ -5,7 +5,7 @@ import { sleep } from '@/utils/helpers.js'
 
 dotenv.config()
 
-type GetSubscribersOptions = {
+export type GetSubscribersOptions = {
   rateLimit?: number;
   windowMs?: number;
 }

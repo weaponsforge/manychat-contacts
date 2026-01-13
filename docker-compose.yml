@@ -1,0 +1,15 @@
+services:
+  weaponsforge.manychat-lib-dev:
+    container_name: weaponsforge-manychat-lib-dev
+    image: weaponsforge/manychat-lib:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    volumes:
+      - .:/opt/app
+      - /opt/app/node_modules
+    ports:
+      - "9229:9229"
+    stdin_open: true
+    tty: true

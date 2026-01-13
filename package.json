@@ -21,7 +21,9 @@
     "node": ">=24"
   },
   "scripts": {
-    "dev": "node src/main.ts",
+    "dev": "tsx src/main.ts",
+    "docker:debug": "export IS_DOCKER=true && node --inspect=0.0.0.0:9229 ./node_modules/.bin/tsx src/main.ts",
+    "transpile": "tsc -p tsconfig.json && tsc-alias",
     "lint": "eslint \"src/**/*.ts\" *.mjs",
     "lint:fix": "eslint \"src/**/*.ts\" *.mjs --fix"
   },
@@ -36,6 +38,7 @@
     "typescript-eslint": "^8.52.0"
   },
   "dependencies": {
-    "csv-parse": "^6.1.0"
+    "csv-parse": "^6.1.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   }
 }
