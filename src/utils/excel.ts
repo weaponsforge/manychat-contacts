@@ -17,18 +17,18 @@ export const writeExcel = <T>(
   xlsx.utils.book_append_sheet(workbook, worksheet, 'Contacts')
 
   try {
-    const options = {
-      type: 'buffer',
-      bookType: 'xlsx',
-      compression: true
-    }
-
     // Write the Excel file using writeFileSync for better error handling
-    const buffer = xlsx.write(workbook, options)
+    const buffer = xlsx.write(workbook, {
+      type: 'buffer' as const,
+      bookType: 'xlsx' as const,
+      compression: true
+    })
     fs.writeFileSync(pathToFile, buffer)
   } catch (error) {
+    if (error instanceof Error) {
+      console.log(`[ERROR]: ${error.message}. Fall back to writeFile.`)
+    }
     // Fallback to writeFile if writeFileSync fails
-    console.log(`[ERROR]: ${error.message}. Fall back to writeFile.`)
     xlsx.writeFile(workbook, pathToFile, { compression: true })
   }
 }

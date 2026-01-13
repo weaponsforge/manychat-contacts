@@ -11,14 +11,15 @@ import { writeExcel } from './utils/excel.js'
 const main = async () => {
   try {
     const subscriber = new SubscriberService()
+    const fileName = 'contacts_mvc'
 
     // Read Subscriber list from CSV file
     const subscriberIds: string[] = await csv(
-      file(import.meta.url, 'contacts_mvc.csv')
+      file(import.meta.url, `${fileName}.csv`)
     )
     // Fetch Subscribers data
     const subscribers = <Record<string, string>[]>(
-      await subscriber.getSubscribers(subscriberIds)
+      await subscriber.getSubscribers(subscriberIds, { windowMs: 5000 })
     )
 
     // Transform Subscribers data
@@ -56,8 +57,8 @@ const main = async () => {
 
     console.log(`Fetched ${subscribersList.length}/${subscribers.length} active Subscribers`)
 
-    const fileName = file(import.meta.url, 'contacts.xlsx')
-    writeExcel(subscribersList, fileName)
+    const excelFilePath = file(import.meta.url, `${fileName}.xlsx`)
+    writeExcel(subscribersList, excelFilePath)
   } catch (error) {
     if (error instanceof Error) {
       console.log('[ERROR]', error.message)
@@ -75,4 +76,3 @@ if (process.env.IS_DOCKER) {
 } else {
   main()
 }
-

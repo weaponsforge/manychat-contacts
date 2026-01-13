@@ -6,7 +6,9 @@ import { sleep } from '@/utils/helpers.js'
 dotenv.config()
 
 export type GetSubscribersOptions = {
+  /** Number of requests per batch */
   rateLimit?: number;
+  /** Next batch timeout interval in MS */
   windowMs?: number;
 }
 
@@ -64,6 +66,12 @@ export class SubscriberService extends ManyChatBase {
     // Fetch Subscriber data by batch
     for (let i = 0; i < subscriberIds.length; i += RATE_LIMIT) {
       const batchPromises: Promise<unknown>[] = []
+
+      const start = i + 1
+      const end = i + RATE_LIMIT + 1
+      const ts = new Date().toISOString().replace('T', ' ').slice(0, 19)
+
+      console.log(`[${ts}]: Downloading ${start} - ${end} of ${subscriberIds.length - 1} Contacts...`)
 
       for (let j = i; j < i + RATE_LIMIT && j < subscriberIds.length; j += 1) {
         if (j === 0) continue

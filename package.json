@@ -24,6 +24,7 @@
     "dev": "tsx src/main.ts",
     "docker:debug": "export IS_DOCKER=true && node --inspect=0.0.0.0:9229 ./node_modules/.bin/tsx src/main.ts",
     "transpile": "tsc -p tsconfig.json && tsc-alias",
+    "transpile:noemit": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint \"src/**/*.ts\" *.mjs",
     "lint:fix": "eslint \"src/**/*.ts\" *.mjs --fix"
   },

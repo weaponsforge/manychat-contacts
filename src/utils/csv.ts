@@ -30,7 +30,7 @@ export const csv = (csvFilePath: string): Promise<string[]> => {
     })
 
     parser.on('end', () => {
-      console.log('Done parsing csv')
+      console.log('[LOG]: Done parsing CSV file')
       resolve(records)
     })
 
