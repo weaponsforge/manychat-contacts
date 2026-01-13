@@ -1,10 +1,14 @@
 import { getSubscribersData } from '@/subscriber/list.js'
+import { getargs } from '@/utils/helpers.js'
 
 /** Main program start */
 const main = async () => {
   try {
+    const args = getargs({ params: ['filename'] })
+    const csvFilename = args?.filename
+
     // Fetches and writes all subscribers data into an Excel file.
-    await getSubscribersData()
+    await getSubscribersData(csvFilename)
   } catch (error) {
     if (error instanceof Error) {
       console.log('[ERROR]', error.message)

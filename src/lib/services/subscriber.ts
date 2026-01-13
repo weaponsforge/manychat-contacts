@@ -68,7 +68,7 @@ export class SubscriberService extends ManyChatBase {
       const batchPromises: Promise<unknown>[] = []
 
       const start = i + 1
-      const end = i + RATE_LIMIT + 1
+      const end = i + RATE_LIMIT
       const ts = new Date().toISOString().replace('T', ' ').slice(0, 19)
 
       console.log(`[${ts}]: Downloading ${start} - ${end} of ${subscriberIds.length - 1} Contacts...`)

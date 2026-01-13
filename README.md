@@ -15,6 +15,7 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
    - This is a CSV file containing a list of Facebook PSIDs
    - Export this file in ManyChat:<br>
       **Contacts tab** -> **Bulk actions** -> **Export FB Custom Audience**
+   - View the `/data/contacts.csv` sample CSV file for reference.
 
 3. Docker (optional)
 
@@ -37,6 +38,8 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
 > └─ 📂 data<br>
 > └─── 📄 fb_custom_audience_01.csv<br>
 > └─── 📄 fb_custom_audience_02.csv<br>
+> └─── 📄 contacts.csv<br>
+> └─── 📄 ...<br>
 > └─ 📄 package.json<br>
 > └─ 📄 ...<br>
 > └─ 📄 README.md
