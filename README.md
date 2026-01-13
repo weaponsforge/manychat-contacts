@@ -31,7 +31,15 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
    npm install
    ```
 
-3. Create a **`data`** folder under the root project directory. Put your CSV files containing Facebook PSIDs here.
+3. Set up the environment variables. Create a `.env` file inside the root project directory with reference to the `.env.example` file.
+
+   | Variable Name | Description |
+   | --- | --- |
+   | MANYCHAT_API_DOMAIN | ManyChat API root domain URL |
+   | MANYCHAT_API_KEY | ManyChat API key (generated within your ManyChat account) |
+
+
+4. Create a **`data`** folder under the root project directory. Put your CSV files containing Facebook PSIDs here.
 
 > [!NOTE]
 > 📂 manychat-contacts<br>
