@@ -90,7 +90,9 @@ Using Docker
    docker exec -it weaponsforge-manychat-lib-dev <AVAILABLE_SCRIPT>
    ```
 
-   See the list of [Available Scripts]() for more information.
+   See the list of [Available Scripts](#-available-scripts) for more information.
+
+<br>
 
 ## 📜 Available Scripts
 
