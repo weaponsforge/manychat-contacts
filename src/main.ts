@@ -1,64 +1,10 @@
-import { SubscriberService } from '@/services/subscriber.js'
-import { file } from '@/utils/helpers.js'
-import { csv } from '@/utils/csv.js'
+import { getSubscribersData } from '@/subscriber/list.js'
 
-import type {
-  SubscriberType,
-  SubscriberResponse
-} from '@/services/subscriber.js'
-import { writeExcel } from './utils/excel.js'
-
+/** Main program start */
 const main = async () => {
   try {
-    const subscriber = new SubscriberService()
-    const fileName = 'contacts_mvc'
-
-    // Read Subscriber list from CSV file
-    const subscriberIds: string[] = await csv(
-      file(import.meta.url, `${fileName}.csv`)
-    )
-    // Fetch Subscribers data
-    const subscribers = <Record<string, string>[]>(
-      await subscriber.getSubscribers(subscriberIds, { windowMs: 5000 })
-    )
-
-    // Transform Subscribers data
-    const subscribersList = subscribers.reduce((
-      list: SubscriberType[],
-      subscriber: SubscriberResponse
-    ) => {
-      if (!subscriber?.data) return list
-
-      const {
-        id,
-        page_id,
-        first_name,
-        last_name,
-        name,
-        status,
-        subscribed,
-        profile_pic
-      } = subscriber?.data ?? {}
-
-      if (!name) return list
-
-      list.push({
-        id: id ?? '',
-        pageId: page_id ?? '',
-        firstName: first_name ?? '',
-        lastName: last_name ?? '',
-        name: name ?? '',
-        status: status ?? '',
-        subscribed: subscribed ?? '',
-        profilePic: profile_pic ?? ''
-      })
-      return list
-    }, [])
-
-    console.log(`Fetched ${subscribersList.length}/${subscribers.length} active Subscribers`)
-
-    const excelFilePath = file(import.meta.url, `${fileName}.xlsx`)
-    writeExcel(subscribersList, excelFilePath)
+    // Fetches and writes all subscribers data into an Excel file.
+    await getSubscribersData()
   } catch (error) {
     if (error instanceof Error) {
       console.log('[ERROR]', error.message)

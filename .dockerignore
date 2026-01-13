@@ -1,6 +1,6 @@
 node_modules/
 dist/
-output/
+data/
 .vscode
 .dockerignore
 Dockerfile

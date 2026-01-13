@@ -8,13 +8,14 @@ import fs from 'fs'
  */
 export const writeExcel = <T>(
   data: T[],
-  pathToFile: string = 'data.xlsx'
+  pathToFile: string = 'data.xlsx',
+  sheetName: string = 'Contacts'
 ) => {
   // Create a worksheet and a workbook
   const worksheet = xlsx.utils.json_to_sheet(data)
   const workbook = xlsx.utils.book_new()
 
-  xlsx.utils.book_append_sheet(workbook, worksheet, 'Contacts')
+  xlsx.utils.book_append_sheet(workbook, worksheet, sheetName)
 
   try {
     // Write the Excel file using writeFileSync for better error handling
@@ -23,6 +24,7 @@ export const writeExcel = <T>(
       bookType: 'xlsx' as const,
       compression: true
     })
+
     fs.writeFileSync(pathToFile, buffer)
   } catch (error) {
     if (error instanceof Error) {

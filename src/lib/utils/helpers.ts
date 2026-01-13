@@ -2,6 +2,11 @@ import fs from 'fs'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
 
+interface GetArgsParams {
+  params: string[];
+  optional?: string[];
+}
+
 /**
  * Get the full file path of the current directory of a module file equivalent to `"__dirname"`from
  * scripts running as ESM modules.
@@ -38,3 +43,33 @@ export const file = (moduleFile: string, fileName: string) => {
  * @returns
  */
 export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
+/**
+ * Get the nodejs cli input parameter values
+ * @param {String[]} params - Array of cli input params
+ * @returns {Object} Input params with user-input values
+ */
+export const getargs = (parameters: GetArgsParams) => {
+  const { params, optional } = parameters
+
+  const args = params.reduce((
+    collection: Record<string, string>,
+    param
+  ) => {
+    const value = process.env[`npm_config_${param}`]
+
+    if (value !== undefined) {
+      collection[param] = value
+    }
+
+    return { ...collection }
+  }, {})
+
+  params.forEach(param => {
+    if (args[param] === undefined && !optional?.includes(param)) {
+      throw new Error(`Undefined args "${param}"`)
+    }
+  })
+
+  return args
+}

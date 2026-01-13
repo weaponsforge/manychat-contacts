@@ -21,7 +21,8 @@
     "node": ">=24"
   },
   "scripts": {
-    "dev": "tsx src/main.ts",
+    "start": "node dist/main.ts",
+    "subscriber:list": "tsx src/main.ts",
     "docker:debug": "export IS_DOCKER=true && node --inspect=0.0.0.0:9229 ./node_modules/.bin/tsx src/main.ts",
     "transpile": "tsc -p tsconfig.json && tsc-alias",
     "transpile:noemit": "tsc -p tsconfig.json --noEmit",
