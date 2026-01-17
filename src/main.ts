@@ -1,7 +1,10 @@
 import { getSubscribersData } from '@/subscriber/list.js'
 import { getargs } from '@/utils/helpers.js'
 
-/** Main program start */
+/**
+ * Main program start.
+ * Usage: `npm run subscriber:list --filename=contacts`
+ */
 const main = async () => {
   try {
     const args = getargs({ params: ['filename'] })

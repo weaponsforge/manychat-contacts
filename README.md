@@ -11,13 +11,17 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
    npm 11.6.1
    ```
 
-2. Facebook PSIDs
+2. Facebook PSIDs CSV file
    - This is a CSV file containing a list of Facebook PSIDs
    - Export this file in ManyChat:<br>
       **Contacts tab** -> **Bulk actions** -> **Export FB Custom Audience**
    - View the `/data/contacts.csv` sample CSV file for reference.
 
-3. Docker (optional)
+3. ManyChat API Key
+   - ManyChat API key generated within your ManyChat account.
+   - > ⚠️ The API key and the **Facebook PSIDs** (see requirement #2) should belong under the **same ManyChat account**.
+
+4. Docker (optional)
 
 ## 🛠️ Installation
 
@@ -36,7 +40,7 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
    | Variable Name | Description |
    | --- | --- |
    | MANYCHAT_API_DOMAIN | ManyChat API root domain URL |
-   | MANYCHAT_API_KEY | ManyChat API key (generated within your ManyChat account) |
+   | MANYCHAT_API_KEY | ManyChat API key (generated within your ManyChat account).<br>⚠️ The API key and the **Facebook PSIDs** (see requirement #2) should belong under the **same ManyChat account**. |
 
 
 4. Create a **`data`** folder under the root project directory. Put your CSV files containing Facebook PSIDs here.
@@ -154,6 +158,12 @@ Fixes lint errors in TypeScript files.
       ]
    }
    ```
+
+## References
+
+- ManyChat API Intro <sup>[[1]](https://help.manychat.com/hc/en-us/articles/14281252007580-Dev-Tools-Basics)</sup>
+- ManyChat API Swagger Docs <sup>[[2]](https://api.manychat.com/swagger)</sup>
+- Facebook PSID <sup>[[3]](https://help.manychat.com/hc/en-us/articles/14281071624348-How-to-export-PSIDs-of-your-Manychat-contacts)</sup>
 
 @weaponsforge<br>
 20260112
