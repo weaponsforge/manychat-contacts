@@ -17,11 +17,14 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
       **Contacts tab** -> **Bulk actions** -> **Export FB Custom Audience**
    - View the `/data/contacts.csv` sample CSV file for reference.
 
-3. ManyChat API Key
+3. ManyChat Account
+   - With Pro subscription or 14-Day Free Trial
+
+4. ManyChat API Key
    - ManyChat API key generated within your ManyChat account.
    - > ⚠️ The API key and the **Facebook PSIDs** (see requirement #2) should belong under the **same ManyChat account**.
 
-4. Docker (optional)
+5. Docker (optional)
 
 ## 🛠️ Installation
 
@@ -40,7 +43,7 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
    | Variable Name | Description |
    | --- | --- |
    | MANYCHAT_API_DOMAIN | ManyChat API root domain URL |
-   | MANYCHAT_API_KEY | ManyChat API key (generated within your ManyChat account).<br>⚠️ The API key and the **Facebook PSIDs** (see requirement #2) should belong under the **same ManyChat account**. |
+   | MANYCHAT_API_KEY | ManyChat API key (generated within your ManyChat account).<br><br>⚠️ The API key and the **Facebook PSIDs** (see requirement #2) should belong under the **same ManyChat account**. |
 
 
 4. Create a **`data`** folder under the root project directory. Put your CSV files containing Facebook PSIDs here.
