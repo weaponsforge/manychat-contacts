@@ -17,11 +17,18 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
       **Contacts tab** -> **Bulk actions** -> **Export FB Custom Audience**
    - View the `/data/contacts.csv` sample CSV file for reference.
 
-3. ManyChat API Key
+3. ManyChat Account
+   - With Pro subscription or 14-Day Free Trial
+
+4. ManyChat API Key
    - ManyChat API key generated within your ManyChat account.
    - > ⚠️ The API key and the **Facebook PSIDs** (see requirement #2) should belong under the **same ManyChat account**.
 
-4. Docker (optional)
+5. Internet Connection
+   - Strong WiFi connection
+   - > ⚠️ WiFi connection from mobile hoptspots does not work.
+
+6. Docker (optional)
 
 ## 🛠️ Installation
 
@@ -40,7 +47,7 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
    | Variable Name | Description |
    | --- | --- |
    | MANYCHAT_API_DOMAIN | ManyChat API root domain URL |
-   | MANYCHAT_API_KEY | ManyChat API key (generated within your ManyChat account).<br>⚠️ The API key and the **Facebook PSIDs** (see requirement #2) should belong under the **same ManyChat account**. |
+   | MANYCHAT_API_KEY | ManyChat API key (generated within your ManyChat account).<br><br>⚠️ The API key and the **Facebook PSIDs** (see requirement #2) should belong under the **same ManyChat account**. |
 
 
 4. Create a **`data`** folder under the root project directory. Put your CSV files containing Facebook PSIDs here.
@@ -139,6 +146,12 @@ Fixes lint errors in TypeScript files.
 
 - Runs the `"/src/main.ts"` script in containers with debugging enabled in VSCode.
 - Replace the `"/src/main.ts"` file path in the package.json file's `"docker:debug"` script with a target TypeScript file for debugging.
+- Sample usage (`main.ts`):
+
+  ```sh
+  docker exec -it weaponsforge-manychat-lib-dev npm run docker:debug --filename=contacts
+  ```
+
 - Launch the VSCode debugger using the following configuration:
    ```json
    {

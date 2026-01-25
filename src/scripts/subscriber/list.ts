@@ -22,6 +22,10 @@ export const getSubscribersData = async (fileNameNoExt: string = 'contacts') => 
     const dataFolderPath = path.join(directory(import.meta.url), '..', '..', '..', 'data')
     const csvFilePath = path.join(dataFolderPath, `${fileNameNoExt}.csv`)
     const subscriberIds: string[] = await csv(csvFilePath)
+    const invalidContacts: Record<string, string>[] = []
+
+    // Remove the `pageguid` column header
+    subscriberIds.splice(0, 1)
 
     // Fetch Subscribers data
     const subscribers = <Record<string, string>[]>(
@@ -43,10 +47,14 @@ export const getSubscribersData = async (fileNameNoExt: string = 'contacts') => 
         name,
         status,
         subscribed,
-        profile_pic
+        profile_pic,
+        live_chat_url
       } = subscriber?.data ?? {}
 
-      if (!name) return list
+      if (!name) {
+        invalidContacts.push(subscriber?.data)
+        return list
+      }
 
       list.push({
         id: id ?? '',
@@ -56,7 +64,8 @@ export const getSubscribersData = async (fileNameNoExt: string = 'contacts') => 
         name: name ?? '',
         status: status ?? '',
         subscribed: subscribed ?? '',
-        profilePic: profile_pic ?? ''
+        profilePic: profile_pic ?? '',
+        liveChatURL: live_chat_url ?? ''
       })
       return list
     }, [])
@@ -65,6 +74,7 @@ export const getSubscribersData = async (fileNameNoExt: string = 'contacts') => 
     writeExcel(subscribersList, excelFilePath)
 
     console.log(`\nFetched ${subscribersList.length}/${subscribers.length} active Subscribers`)
+    console.log(`Skipped saving ${invalidContacts.length} invalid Subscribers`)
     console.log(`Saved to Excel file in ${excelFilePath}`)
   } catch (error) {
     if (error instanceof Error) {

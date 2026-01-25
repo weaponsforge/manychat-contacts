@@ -22,6 +22,7 @@ export interface SubscriberType {
   status: string;
   subscribed: string;
   profilePic: string;
+  liveChatURL: string;
 }
 
 export type SubscriberResponse = {
@@ -34,6 +35,7 @@ export type SubscriberResponse = {
     status: string;
     subscribed: string;
     profile_pic: string;
+    live_chat_url: string;
   }
 }
 
@@ -71,11 +73,9 @@ export class SubscriberService extends ManyChatBase {
       const end = i + RATE_LIMIT
       const ts = new Date().toISOString().replace('T', ' ').slice(0, 19)
 
-      console.log(`[${ts}]: Downloading ${start} - ${end} of ${subscriberIds.length - 1} Contacts...`)
+      console.log(`[${ts}]: Downloading ${start} - ${end} of ${subscriberIds.length} Contacts...`)
 
       for (let j = i; j < i + RATE_LIMIT && j < subscriberIds.length; j += 1) {
-        if (j === 0) continue
-
         const subscriberId = subscriberIds[j]?.[0] ?? null
 
         if (subscriberId) {
