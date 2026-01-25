@@ -5,15 +5,21 @@ export class ManyChatBase extends FetchHandler {
 
   options = {
     headers: {
-      'Authorization': `Bearer ${process.env.MANYCHAT_API_KEY}`
+      'Authorization': 'Bearer -'
     }
   }
 
   /** Initialize the subscriber service */
-  constructor () {
+  constructor (apiKey?: string) {
     super()
 
-    if (!process.env.MANYCHAT_API_KEY) {
+    const serviceApiKey = apiKey ?? process.env.MANYCHAT_API_KEY
+
+    if (typeof serviceApiKey !== 'string') {
+      throw new Error('Invalid API key')
+    }
+
+    if (!serviceApiKey) {
       throw new Error('MANYCHAT_API_KEY is not set')
     }
 
@@ -22,5 +28,6 @@ export class ManyChatBase extends FetchHandler {
     }
 
     this.apiDomain = process.env.MANYCHAT_API_DOMAIN
+    this.options.headers.Authorization = `Bearer ${serviceApiKey}`
   }
 }

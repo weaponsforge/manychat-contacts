@@ -26,7 +26,7 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
 
 5. Internet Connection
    - Strong WiFi connection
-   - > ⚠️ WiFi connection from mobile hoptspots does not work.
+   - > ⚠️ WiFi connection from mobile hotspots does not work.
 
 6. Docker (optional)
 
@@ -109,7 +109,7 @@ Using Docker
 
 - **Run the Available Scripts** following the pattern:
    ```sh
-   docker exec -it weaponsforge-manychat-lib-dev <AVAILABLE_SCRIPT>
+   docker exec -it weaponsforge-manychat-services-dev <AVAILABLE_SCRIPT>
    ```
 
    See the list of [Available Scripts](#-available-scripts) for more information.
@@ -149,7 +149,7 @@ Fixes lint errors in TypeScript files.
 - Sample usage (`main.ts`):
 
   ```sh
-  docker exec -it weaponsforge-manychat-lib-dev npm run docker:debug --filename=contacts
+  docker exec -it weaponsforge-manychat-services-dev npm run docker:debug --filename=contacts
   ```
 
 - Launch the VSCode debugger using the following configuration:
