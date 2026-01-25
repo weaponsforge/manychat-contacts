@@ -24,7 +24,11 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
    - ManyChat API key generated within your ManyChat account.
    - > ⚠️ The API key and the **Facebook PSIDs** (see requirement #2) should belong under the **same ManyChat account**.
 
-5. Docker (optional)
+5. Internet Connection
+   - Strong WiFi connection
+   - > ⚠️ WiFi connection from mobile hoptspots does not work.
+
+6. Docker (optional)
 
 ## 🛠️ Installation
 
@@ -142,6 +146,12 @@ Fixes lint errors in TypeScript files.
 
 - Runs the `"/src/main.ts"` script in containers with debugging enabled in VSCode.
 - Replace the `"/src/main.ts"` file path in the package.json file's `"docker:debug"` script with a target TypeScript file for debugging.
+- Sample usage (`main.ts`):
+
+  ```sh
+  docker exec -it weaponsforge-manychat-lib-dev npm run docker:debug --filename=contacts
+  ```
+
 - Launch the VSCode debugger using the following configuration:
    ```json
    {
