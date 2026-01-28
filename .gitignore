@@ -8,4 +8,5 @@ data/
 *.tgz
 *.txt
 *.csv
+*.json
 *.xlsx
