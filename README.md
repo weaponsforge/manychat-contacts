@@ -142,7 +142,7 @@ Runs the main script (JavaScript) that mirrors everything the `"subscriber:list"
 
 ### `subscriber:list`
 
-- Runs the main script (TypeScript) that fetches the subscribers list and writes it to an Excel file with the `--filename` argument.
+- Runs the main script (TypeScript) that fetches the subscribers list (reading the Facebook IDs from a CSV file containing Facebook PSIDs) and writes the fetched data to an Excel file with the `--filename` argument.
 
    ```sh
    npm run subscriber:list --filename=fb_custom_audience_01
