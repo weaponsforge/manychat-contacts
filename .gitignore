@@ -3,5 +3,9 @@ dist/
 data/
 .vscode
 .env
+*.zip
+*.rar
+*.tgz
+*.txt
 *.csv
 *.xlsx
