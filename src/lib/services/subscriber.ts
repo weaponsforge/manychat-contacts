@@ -1,43 +1,13 @@
 import dotenv from 'dotenv'
+
 import { API_ROUTES } from '@/utils/routes.js'
 import { ManyChatBase } from './manychat.js'
 import { sleep } from '@/utils/helpers.js'
 
+import type { FetchSubscribersOptions } from '@/types.js'
+
 dotenv.config()
 
-export type GetSubscribersOptions = {
-  /** Number of requests per batch */
-  rateLimit?: number;
-  /** Next batch timeout interval in MS */
-  windowMs?: number;
-}
-
-
-export interface SubscriberType {
-  id: string;
-  pageId: string;
-  firstName: string;
-  lastName: string;
-  name: string;
-  status: string;
-  subscribed: string;
-  profilePic: string;
-  liveChatURL: string;
-}
-
-export type SubscriberResponse = {
-  data?: {
-    id: string;
-    page_id: string;
-    first_name: string;
-    last_name: string;
-    name: string;
-    status: string;
-    subscribed: string;
-    profile_pic: string;
-    live_chat_url: string;
-  }
-}
 
 // ManyChat Subscriber Service
 export class SubscriberService extends ManyChatBase {
@@ -55,10 +25,10 @@ export class SubscriberService extends ManyChatBase {
   /**
    * Fetches a list of Subscriber data by batch given a list of ManyChat Subscriber IDs
    * @param {string[]} subscriberIds - List of ManyChat Subscriber IDs
-   * @param {GetSubscribersOptions} options - Batch data fetching options
+   * @param {FetchSubscribersOptions} options - Batch data fetching options
    * @returns Promise that resolves into an array of Subscriber data
    */
-  async getSubscribers (subscriberIds: string[], options?: GetSubscribersOptions): Promise<unknown[]> {
+  async getSubscribers (subscriberIds: string[], options?: FetchSubscribersOptions): Promise<unknown[]> {
     const { rateLimit, windowMs } = options ?? {}
 
     const RATE_LIMIT = rateLimit ?? 10

@@ -48,6 +48,7 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
    | --- | --- |
    | MANYCHAT_API_DOMAIN | ManyChat API root domain URL |
    | MANYCHAT_API_KEY | ManyChat API key (generated within your ManyChat account).<br><br>⚠️ The API key and the **Facebook PSIDs** (see requirement #2) should belong under the **same ManyChat account**. |
+   | FB_PAGE_ID | (Optional) Facebook Page ID connected under the **same ManyChat account**.<br>💡 This is required only when using the  `ManyChatBase.getliveChatURL()` method. |
 
 
 4. Create a **`data`** folder under the root project directory. Put your CSV files containing Facebook PSIDs here.
@@ -58,6 +59,7 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
 > └─── 📄 fb_custom_audience_01.csv<br>
 > └─── 📄 fb_custom_audience_02.csv<br>
 > └─── 📄 contacts.csv<br>
+> └─── 📄 contactsData.json<br>
 > └─── 📄 ...<br>
 > └─ 📄 package.json<br>
 > └─ 📄 ...<br>
@@ -67,15 +69,21 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
 
 Using Node
 
-1. Option 1: Run the development list subscribers script with a `--filename` argument.
+1. **Option 1: Run the development list subscribers script with a `--filename` argument.**
 
-   Write the filename minus the `.csv` part of your Facebook PSID CSV file (inside the `/data` folder) to the `--filename` argument eg.,
+   a. Write the filename minus the `.csv` part of your Facebook PSID CSV file (inside the `/data` folder) to the `--filename` argument eg.,
 
    ```sh
    npm run subscriber:list --filename=fb_custom_audience_01
    ```
 
-2. Option 2: Transpile to JavaScript before running the list subscribers script.
+   b. Append a `--isjson` flag When converting a JSON file containing Contacts data to Excel, eg.,
+
+   ```sh
+   npm run subscriber:list --filename=contactsData --isjson
+   ```
+
+2. **Option 2: Transpile to JavaScript before running the list subscribers script.**
 
    a. Transpile to JavaScript:
 
@@ -88,6 +96,13 @@ Using Node
    ```sh
    npm start --filename=fb_custom_audience_01
    ```
+
+   c. Run the read subscribers script with a `--filename` and `--isjson` argument.
+
+   ```sh
+   npm start subscriber:list --filename=contactsData --isjson
+   ```
+
 
 3. Running **Option 1** or **Option 2** creates an Excel file containing a list of ManyChat Subscribers data inside the `/data` directory. Note its Excel file name from the script logs.
 
@@ -120,11 +135,24 @@ Using Docker
 
 ### `npm start`
 
-Runs the main script (JavaScript) that fetches the subscribers list and writes it to an Excel file. Requires `"npm run transpile"`.
+Runs the main script (JavaScript) that mirrors everything the `"subscriber:list"` (TypeScript) script does. Requires `"npm run transpile"`.
+
+> [!INFO]
+> See the ``"subscriber:list"` script for available argument flags.
 
 ### `subscriber:list`
 
-Runs the main script (TypeScript) that fetches the subscribers list and writes it to an Excel file.
+- Runs the main script (TypeScript) that fetches the subscribers list (reading the Facebook IDs from a CSV file containing Facebook PSIDs) and writes the fetched data to an Excel file with the `--filename` argument.
+
+   ```sh
+   npm run subscriber:list --filename=fb_custom_audience_01
+   ```
+
+- Runs the main script (TypeScript) that reads the FULL subscribers data from a local JSON file writes it to an Excel file with the `--isjson` argument.
+
+   ```sh
+   npm run subscriber:list --filename=contactsData --isjson
+   ```
 
 ### `npm run transpile`
 
@@ -171,6 +199,34 @@ Fixes lint errors in TypeScript files.
       ]
    }
    ```
+
+## Data Types
+
+### Excel Output
+
+The Excel output contains the following data in its rows.
+
+| Label | Type | Description |
+| --- | --- | --- |
+| `id` | string | Facebook User ID (from PSID) |
+| `pageId` | string | Facebook Page ID |
+| `firstName` | string | Facebook user's first name |
+| `lastName` | string | Facebook user's last name |
+| `name` | string | Facebook user's full name |
+| `status` | string | Facebook user's account status |
+| ``subscribed`` | number | Date the Facebook user started an interaction with ManyChat (timestamp) |
+| `profilePic` | string | URL link to the Facebook user's avatar (profile picture) in ManyChat |
+| `liveChatURL` | string | URL link to the Facebook user's conversation thread in ManyChat |
+
+### Data Input
+
+1. For the **`npm run subscriber:list --filename`** script,
+
+   See the `"/data/contacts.csv"` CSV file for more information about the required input format.
+
+2. For the **`npm run subscriber:list --filename --isjson`** script,
+
+   See the `"/data/contactsData.csv"` JSON file for more information about the required input format.
 
 ## References
 
