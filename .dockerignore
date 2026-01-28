@@ -11,6 +11,7 @@ Dockerfile
 *.json
 *.csv
 *.xlsx
+*.json
 
 !package.json
 !package-lock.json

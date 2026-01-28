@@ -48,6 +48,7 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
    | --- | --- |
    | MANYCHAT_API_DOMAIN | ManyChat API root domain URL |
    | MANYCHAT_API_KEY | ManyChat API key (generated within your ManyChat account).<br><br>⚠️ The API key and the **Facebook PSIDs** (see requirement #2) should belong under the **same ManyChat account**. |
+   | FB_PAGE_ID | (Optional) Facebook Page ID connected under the **same ManyChat account**.<br>💡 This is required only when using the  `ManyChatBase.getliveChatURL()` method. |
 
 
 4. Create a **`data`** folder under the root project directory. Put your CSV files containing Facebook PSIDs here.

@@ -7,8 +7,12 @@ import { getargs } from '@/utils/helpers.js'
  */
 const main = async () => {
   try {
-    const args = getargs({ params: ['filename'] })
+    const args = getargs({ params: ['filename', 'isjson'], optional: ['isjson'] })
     const csvFilename = args?.filename
+
+    if (typeof csvFilename !== 'string') {
+      throw new Error('Missing or invalid file name')
+    }
 
     // Fetches and writes all subscribers data into an Excel file.
     await getSubscribersData(csvFilename)

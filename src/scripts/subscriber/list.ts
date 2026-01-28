@@ -6,23 +6,24 @@ import { csv } from '@/utils/csv.js'
 import { writeExcel } from '@/utils/excel.js'
 
 import type {
+  SubscriberFields,
   SubscriberType,
   SubscriberResponse
-} from '@/services/subscriber.js'
+} from '@/types.js'
 
 /**
- * Fetches partial ManyChat Subscribers (Contacts) data
+ * Fetches ManyChat Subscribers (Contacts) data
  * and writes them in an Excel file.
  */
 export const getSubscribersData = async (fileNameNoExt: string = 'contacts') => {
   try {
-    const subscriber = new SubscriberService()
+    const subscriber = new SubscriberService(process.env.MANYCHAT_API_KEY)
 
     // Read Subscriber list from CSV file
     const dataFolderPath = path.join(directory(import.meta.url), '..', '..', '..', 'data')
     const csvFilePath = path.join(dataFolderPath, `${fileNameNoExt}.csv`)
     const subscriberIds: string[] = await csv(csvFilePath)
-    const invalidContacts: Record<string, string>[] = []
+    const invalidContacts: SubscriberFields[] = []
 
     // Remove the `pageguid` column header
     subscriberIds.splice(0, 1)
