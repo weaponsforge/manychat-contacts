@@ -208,15 +208,15 @@ The Excel output contains the following data in its rows.
 
 | Label | Type | Description |
 | --- | --- | --- |
-| id | string | Facebook User ID (from PSID) |
-| pageId | string | Facebook Page ID |
-| firstName | string | Facebook user's first name |
-| lastName | string | Facebook user's last name |
-| name | string | Facebook user's full name |
-| status | string | Facebook user's account status |
-| subscribed | number | Date the Facebook user started an interaction with ManyChat (timestamp) |
-| profilePic | string | URL link to the Facebook user's avatar (profile picture) in ManyChat |
-| liveChatURL | string | URL link to the Facebook user's conversation thread in ManyChat |
+| `id` | string | Facebook User ID (from PSID) |
+| `pageId` | string | Facebook Page ID |
+| `firstName` | string | Facebook user's first name |
+| `lastName` | string | Facebook user's last name |
+| `name` | string | Facebook user's full name |
+| `status` | string | Facebook user's account status |
+| ``subscribed`` | number | Date the Facebook user started an interaction with ManyChat (timestamp) |
+| `profilePic` | string | URL link to the Facebook user's avatar (profile picture) in ManyChat |
+| `liveChatURL` | string | URL link to the Facebook user's conversation thread in ManyChat |
 
 ### Data Input
 
