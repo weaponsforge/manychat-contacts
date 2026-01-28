@@ -59,6 +59,7 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
 > └─── 📄 fb_custom_audience_01.csv<br>
 > └─── 📄 fb_custom_audience_02.csv<br>
 > └─── 📄 contacts.csv<br>
+> └─── 📄 contactsData.json<br>
 > └─── 📄 ...<br>
 > └─ 📄 package.json<br>
 > └─ 📄 ...<br>
@@ -68,7 +69,7 @@ Fetches **Subscribers (Contacts)** information from the ManyChat API using a lis
 
 Using Node
 
-1. Option 1: Run the development list subscribers script with a `--filename` argument.
+1. **Option 1: Run the development list subscribers script with a `--filename` argument.**
 
    a. Write the filename minus the `.csv` part of your Facebook PSID CSV file (inside the `/data` folder) to the `--filename` argument eg.,
 
@@ -82,7 +83,7 @@ Using Node
    npm run subscriber:list --filename=contactsData --isjson
    ```
 
-2. Option 2: Transpile to JavaScript before running the list subscribers script.
+2. **Option 2: Transpile to JavaScript before running the list subscribers script.**
 
    a. Transpile to JavaScript:
 
@@ -136,7 +137,7 @@ Using Docker
 
 Runs the main script (JavaScript) that mirrors everything the `"subscriber:list"` (TypeScript) script does. Requires `"npm run transpile"`.
 
-> ![INFO]
+> [!INFO]
 > See the ``"subscriber:list"` script for available argument flags.
 
 ### `subscriber:list`
