@@ -148,7 +148,7 @@ Runs the main script (JavaScript) that mirrors everything the `"subscriber:list"
    npm run subscriber:list --filename=fb_custom_audience_01
    ```
 
-- Runs the main script (TypeScript) that reads the subscribers list from a local JSON file writes it to an Excel file with the `--isjson` argument.
+- Runs the main script (TypeScript) that reads the FULL subscribers data from a local JSON file writes it to an Excel file with the `--isjson` argument.
 
    ```sh
    npm run subscriber:list --filename=contactsData --isjson
